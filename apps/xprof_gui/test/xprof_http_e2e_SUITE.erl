@@ -88,8 +88,13 @@ init_per_suite(Config) ->
 end_per_suite(_Config) ->
     ok.
 
+init_per_group(elixir, Config) ->
+    case xprof_core_test_lib:ensure_elixir_setup_for_e2e_test() of
+        ok -> Config;
+        _  -> {skip, "Elixir unsupported on this OTP release."}
+    end;
 init_per_group(_, Config) ->
-    {skip, "dupa"}.
+    Config.
 
 end_per_group(_, _) ->
     ok.

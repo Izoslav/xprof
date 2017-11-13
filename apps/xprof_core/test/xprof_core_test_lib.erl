@@ -42,6 +42,9 @@ run_elixir_unit_tests(Tests) ->
             end
     end.
 
+ensure_elixir_setup_for_e2e_test() ->
+    ok.
+
 setup_elixir(ElixirEbin) ->
     %% Ensure Elixir is in the code path
     ElixirEbin1 =
