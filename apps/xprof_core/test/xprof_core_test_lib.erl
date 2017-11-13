@@ -44,7 +44,20 @@ run_elixir_unit_tests(Tests) ->
     end.
 
 ensure_elixir_setup_for_e2e_test() ->
-    ok.
+    case os:find_executable("elixir") of
+        false ->
+            %% no Elixir in path - skip elixir tests
+            [];
+        Elixir ->
+            case get_elixir_ebin(Elixir) of
+                error ->
+                    [];
+                ElixirEbin ->
+                    {setup,
+                     fun() -> setup_elixir(ElixirEbin) end,
+                     fun cleanup_elixir/1}
+            end
+    end.
 
 setup_elixir(ElixirEbin) ->
     %% Ensure Elixir is in the code path
