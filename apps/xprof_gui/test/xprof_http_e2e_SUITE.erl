@@ -92,16 +92,16 @@ init_per_group(elixir, Config) ->
     case xprof_core_test_lib:ensure_elixir_setup_for_e2e_test() of
         [] ->
             {skip, "Elixir unsupported on this OTP release."};
-        {setup, Setup, Cleanup} ->
-            Setup(),
-            [{cleanup, Cleanup} | Config]
+        {setup, SetupFun, CleanupFun} ->
+            SetupFun(),
+            [{cleanup, CleanupFun} | Config]
     end;
 init_per_group(_, Config) ->
     Config.
 
 end_per_group(erlang, Config) ->
-    Cleanup = ?config(cleanup, Config),
-    Cleanup(),
+    {cleanup, CleanupFun} = ?config(cleanup, Config),
+    CleanupFun(),
     ok;
 end_per_group(_, _) ->
     ok.
