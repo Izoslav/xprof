@@ -2,7 +2,8 @@
 
 -export([is_elixir_version/1,
          is_elixir_available/0,
-         run_elixir_unit_tests/1]).
+         run_elixir_unit_tests/1,
+         ensure_elixir_setup_for_e2e_test/0]).
 
 -define(EUNIT_NOAUTO, true).
 -include_lib("eunit/include/eunit.hrl").
