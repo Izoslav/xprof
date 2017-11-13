@@ -100,7 +100,7 @@ init_per_group(_, Config) ->
     Config.
 
 end_per_group(erlang, Config) ->
-    {cleanup, CleanupFun} = ?config(cleanup, Config),
+    CleanupFun = ?config(cleanup, Config),
     CleanupFun(),
     ok;
 end_per_group(_, _) ->
