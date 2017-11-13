@@ -99,10 +99,11 @@ init_per_group(elixir, Config) ->
 init_per_group(_, Config) ->
     Config.
 
-end_per_group(erlang, Config) ->
-    CleanupFun = ?config(cleanup, Config),
-    CleanupFun(),
-    ok;
+end_per_group(elixir, Config) ->
+    case ?config(cleanup, Config) of
+        undefined  -> ok;
+        CleanupFun -> CleanupFun()
+    end;
 end_per_group(_, _) ->
     ok.
 
