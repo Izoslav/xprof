@@ -17,6 +17,7 @@ cache:
 
 install:
     - curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
+    - $HOME/.kiex/bin/kiex list known
     - $HOME/.kiex/bin/kiex install 1.0.0
     - source "$HOME/.kiex/scripts/kiex"
     - ./rebar3 deps
