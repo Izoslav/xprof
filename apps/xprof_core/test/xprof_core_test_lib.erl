@@ -54,8 +54,8 @@ ensure_elixir_setup_for_e2e_test() ->
                     [];
                 ElixirEbin ->
                     {setup,
-                     fun() -> ?MODULE:setup_elixir(ElixirEbin) end,
-                     fun() -> ?MODULE:del_elixir_from_path(ElixirEbin) end}
+                     fun() -> setup_elixir(ElixirEbin) end,
+                     fun() -> del_elixir_from_path(ElixirEbin) end}
             end
     end.
 
