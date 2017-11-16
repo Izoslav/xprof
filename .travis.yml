@@ -17,7 +17,8 @@ cache:
 
 install:
     - kiex list
-    - kiex install 1.0.0
+    - kiex install $ELIXIR_VERSION
+    - kiex use $ELIXIR_VERSION
     - ./rebar3 deps
     - nvm install 6.2 && nvm use 6.2
     - make bootstrap_front_end
@@ -28,3 +29,6 @@ script:
 after_success:
     - ./rebar3 cover
     - if [ $TRAVIS_OTP_RELEASE = "18.3" ]; then ./rebar3 coveralls send; fi
+
+env:
+    ELIXIR_VERSION: 1.1.1
