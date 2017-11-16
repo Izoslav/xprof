@@ -17,6 +17,7 @@ cache:
 
 install:
     - kiex list
+    - kiex list known
     - kiex install $ELIXIR_VERSION
     - kiex use $ELIXIR_VERSION
     - ./rebar3 deps
